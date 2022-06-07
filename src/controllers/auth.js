@@ -1,6 +1,6 @@
 const { user } = require("../../models");
 const Joi = require("joi");
-const bcrypt = require("bcryptjs");
+const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.register = async (req, res) => {
@@ -20,8 +20,8 @@ exports.register = async (req, res) => {
     });
 
   try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const salt = await bcryptjs.genSalt(10);
+    const hashedPassword = await bcryptjs.hash(req.body.password, salt);
 
     const newUser = await user.create({
       name: req.body.name,
@@ -73,7 +73,7 @@ exports.login = async (req, res) => {
         exclude: ["createdAt", "updatedAt"],
       },
     });
-    const isValid = await bcrypt.compare(req.body.password, userExist.password);
+    const isValid = await bcryptjs.compare(req.body.password, userExist.password);
 
     if (!isValid) {
       return res.status(400).send({

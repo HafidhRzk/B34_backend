@@ -1,4 +1,5 @@
 const { product, user, category, categoryProduct } = require('../../models');
+const cloudinary = require('../utils/cloudinary');
 
 exports.getProducts = async (req, res) => {
   try {
@@ -109,11 +110,17 @@ exports.addProduct = async (req, res) => {
       categoryId = categoryId.split(',');
     }
 
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: '34_dumbways',
+      use_filename: true,
+      unique_filename: false,
+    });
+
     const data = {
       name: req.body.name,
       desc: req.body.desc,
       price: req.body.price,
-      image: req.file.filename,
+      image: result.public_id,
       stock: req.body.stock,
       idUser: req.user.id,
     };

@@ -13,7 +13,9 @@ const app = express();
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || "https://loquacious-mooncake-e00a17.netlify.app",
+    origin: process.env.REACT_APP_CLIENT_URL || 
+    "https://loquacious-mooncake-e00a17.netlify.app" || 
+    process.env.CLIENT_URL,
   },
 });
 

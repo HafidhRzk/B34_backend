@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = {};
 const sequelize = new Sequelize('course-express-b34', 'root', 'root', {
-  host: 'localhost',
+  host: 'localhost' || 'https://b34-backend.herokuapp.com/api/v1',
   dialect: 'mysql',
   logging: console.log,
   freezeTableName: true,

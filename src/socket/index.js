@@ -83,17 +83,6 @@ const socketIo = (io) => {
           },
         });
 
-        // data = JSON.parse(JSON.stringify(data));
-        // data = data.map((item) => ({
-        //   ...item,
-        //   profile: {
-        //     ...item.profile,
-        //     image: item.profile?.image
-        //       ? process.env.PATH_FILE + item.profile?.image
-        //       : null,
-        //   },
-        // }));
-
         socket.emit('customer contacts', data);
         console.log(data)
       } catch (err) {
